@@ -33,7 +33,6 @@ function Update(){
             text:"My third note",
             date: "12/08/2022",
         },
-
     ]);
 
     const addNote=(text)=>{
@@ -49,8 +48,7 @@ function Update(){
 
     const deleteNote = (id) =>{
         const newNotes = notes.filter((note)=>note.id != id)
-        setNotes(newNotes)
-        
+        setNotes(newNotes)  
     }
 
     useEffect(()=>{ 
@@ -66,7 +64,6 @@ function Update(){
             'react-notes-data', 
             JSON.stringify(notes)
         )
-
     },[notes])
 
     //Exam part--------------------------------------
@@ -102,15 +99,13 @@ function Update(){
         <Box  m="20px" >
             <h3>Registrar Dados do Paciente</h3>
             
-
             <Box
             display="grid"
             gridTemplateColumns="repeat(12, 1fr)"
             gridAutoRows="140px"
             gap="20px"
             >
-                
-
+            
                 {/*exams section*/}
                 <Box
                 mt="10px"
@@ -136,7 +131,7 @@ function Update(){
                         <IconButton onClick={functionOpenPopup}>
                         <AddBoxIcon />
                         </IconButton> 
-                        <AllExams></AllExams>
+                        
                         {/* Exam Popup */}
                         <Dialog open={open} onClose={functionClosePopup} fullWidth>
                         <FormGroup>
@@ -162,7 +157,15 @@ function Update(){
                             
                         </FormGroup>
                         </Dialog> 
-                        
+                    </Box>
+                    <Box
+                    mt="20px"
+                    p="0 20px"
+                    display="flex "
+                    justifyContent="space-between"
+                    alignItems="center"
+                    >
+                        <AllExams></AllExams>
                     </Box>
                 </Box>
 
