@@ -12,10 +12,11 @@ import NotesList from "../../components/NotesList";
 import AllExams from "../../components/AllExams";
 
 
-
 function Update(){
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    
+   //Notes part--------------------------------------
     const [notes, setNotes] = useState([
         {
             id: nanoid(),
@@ -59,7 +60,7 @@ function Update(){
         } 
     },[])
 
-    //Saving the notes to local Storage--------------
+    //Saving the notes to local Storage
     useEffect(()=>{ 
         localStorage.setItem(
             'react-notes-data', 
@@ -68,6 +69,7 @@ function Update(){
 
     },[notes])
 
+    //Exam part--------------------------------------
     //Exam Popup
     const [open, openChange] = useState(false)
     const functionOpenPopup = () => {
@@ -77,6 +79,23 @@ function Update(){
         openChange(false)
     }
 
+    //e.target.name is the same as key: - eg: name(key): 'pessoa' 
+    const onValueChange = (e) =>{
+        //console.log( e.target.name ,e.target.value)
+        setExam({...exam, [e.target.name]: e.target.value})
+        console.log(exam)
+    }
+
+    const [exam, setExam] = useState([
+        {
+           exam: '',
+           date: '', 
+        }
+    ])
+
+    const addExam = () =>{
+
+    }
    
     return(
 
@@ -117,17 +136,18 @@ function Update(){
                         <IconButton onClick={functionOpenPopup}>
                         <AddBoxIcon />
                         </IconButton> 
+                        <AllExams></AllExams>
                         {/* Exam Popup */}
                         <Dialog open={open} onClose={functionClosePopup} fullWidth>
                         <FormGroup>
                             <Typography m="20px"ml="28px" mb="0px" variant="h3">Adicionar Exame</Typography>
                             <FormControl sx={{m:"20px 20px 10px", p:"10px"}}>
                                 <InputLabel ><Typography variant="h5">Exame</Typography></InputLabel>
-                                <Input/>
+                                <Input onChange={(e) => onValueChange(e)} name="exam"/>
                             </FormControl>
                             <FormControl sx={{m:"10px  20px 10px", p:"10px"}}>
                                 <InputLabel><Typography variant="h5">Data</Typography></InputLabel>
-                                <Input/>
+                                <Input onChange={(e) => onValueChange(e)} name="date" />
                             </FormControl>
                             <Box
                              display="flex"
@@ -136,7 +156,7 @@ function Update(){
                              mr="20px"
                              mb="10px"
                             >
-                                <Button variant="contained" sx={{m:"0px", p:"10px"}}><Typography>salvar</Typography></Button>
+                                <Button onClick={()=>addExam()} variant="contained" sx={{m:"0px", p:"10px"}}><Typography>salvar</Typography></Button>
                                 <Button variant="contained" sx={{m:"10px", p:"10px"}} onClick={functionClosePopup}><Typography>fechar</Typography></Button>
                             </Box>
                             

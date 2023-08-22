@@ -30,7 +30,7 @@ function App() {
               <Route path='/' element={<Register/>}></Route>
               <Route path='/create' element={<CreateUser/>}></Route>
               <Route path='/update' element={<Update/>}></Route>
-             
+
             </Routes>
             </BrowserRouter>
             

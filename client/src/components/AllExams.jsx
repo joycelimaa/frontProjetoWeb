@@ -1,6 +1,14 @@
+import { Box } from "@mui/material";
+
 const AllExams = () => {
     return(
-        <p>Todos examess</p>
+        <Box 
+        display="flex"
+        justifyContent="center"
+        p="20px"
+    >
+        <p>texto</p>
+    </Box>
     )
 }
 
