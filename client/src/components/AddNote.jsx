@@ -24,6 +24,7 @@ const AddNote = ({handleAddNote}) =>{
     }
 
     return(
+        
         <Box
         bgcolor="grey"
         borderRadius="10px"

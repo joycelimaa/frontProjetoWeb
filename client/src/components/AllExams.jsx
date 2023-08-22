@@ -1,9 +1,13 @@
 import { Box,  IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { useState } from "react";
 
-const AllExams = () => {
+
+const AllExams = ({exam}) => {
+
     return(
+       
         <Box 
         bgcolor="grey"
         borderRadius="10px"
@@ -16,13 +20,14 @@ const AllExams = () => {
         whiteSpace="normal" 
         overflow="auto"
     >
+         
         <table>
             <thead>
                 <th>Nome</th>
                 <th>Data</th>
             </thead>
             <tbody>
-            <tr>
+            <tr> 
                 <th>nome exame</th>
                 <th>data exame</th>
                 <Box

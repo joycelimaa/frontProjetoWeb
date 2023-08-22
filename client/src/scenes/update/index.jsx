@@ -76,24 +76,26 @@ function Update(){
         openChange(false)
     }
 
+    const [exam, setExam] = useState([{
+        id:1,
+        name: '',
+        date: '', 
+    }])
+
+    const resetExam = () =>{
+        setExam(initialState)
+    }
+
     //e.target.name is the same as key: - eg: name(key): 'pessoa' 
-    const onValueChange = (e) =>{
-        //console.log( e.target.name ,e.target.value)
-        setExam({...exam, [e.target.name]: e.target.value})
-        console.log(exam)
+    const onValueChange = ({target}) =>{
+        //console.log( target.name ,target.value)
+        setExam({
+            ...exam,
+            [target.name]: target.value
+        })
+        //console.log(exam)
     }
 
-    const [exam, setExam] = useState([
-        {
-           exam: '',
-           date: '', 
-        }
-    ])
-
-    const addExam = () =>{
-
-    }
-   
     return(
 
         <Box  m="20px" >
@@ -138,11 +140,11 @@ function Update(){
                             <Typography m="20px"ml="28px" mb="0px" variant="h3">Adicionar Exame</Typography>
                             <FormControl sx={{m:"20px 20px 10px", p:"10px"}}>
                                 <InputLabel ><Typography variant="h5">Exame</Typography></InputLabel>
-                                <Input onChange={(e) => onValueChange(e)} name="exam"/>
+                                <Input onChange={onValueChange} name="name" value={exam.name}/>
                             </FormControl>
                             <FormControl sx={{m:"10px  20px 10px", p:"10px"}}>
                                 <InputLabel><Typography variant="h5">Data</Typography></InputLabel>
-                                <Input onChange={(e) => onValueChange(e)} name="date" />
+                                <Input  onChange={onValueChange} name="date" value={exam.date} />
                             </FormControl>
                             <Box
                              display="flex"
@@ -165,7 +167,7 @@ function Update(){
                     justifyContent="space-between"
                     alignItems="center"
                     >
-                        <AllExams></AllExams>
+                        <AllExams exam={exam} ></AllExams>
                     </Box>
                 </Box>
 
