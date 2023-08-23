@@ -1,7 +1,6 @@
 import { Box,  IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { useState } from "react";
 
 
 const AllExams = ({exam}) => {
@@ -28,10 +27,18 @@ const AllExams = ({exam}) => {
             </thead>
             <tbody>
             <tr> 
-                <th>nome exame</th>
-                <th>data exame</th>
+               
+                {exam.map((exams)=>(
+                    <div key={exams.id}>
+                        <th>{exams.name}</th>
+                        <th>{exams.date}</th>
+                    </div>
+                    
+                ))}
+                
                 <Box
                 display="flex"
+                
                 >
                     <IconButton><DeleteIcon/></IconButton>
                     <IconButton><EditIcon/></IconButton>

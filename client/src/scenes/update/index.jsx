@@ -76,11 +76,13 @@ function Update(){
         openChange(false)
     }
 
-    const [exam, setExam] = useState([{
+    const initialValues = [{
         id:1,
         name: '',
         date: '', 
-    }])
+    }]
+
+    const [exam, setExam] = useState(initialValues)
 
     const resetExam = () =>{
         setExam(initialState)
