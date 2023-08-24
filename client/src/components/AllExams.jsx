@@ -1,9 +1,10 @@
-import { Box,  IconButton, Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import { Box } from "@mui/material";
+import ExamItem from "./ExamItem";
 
 
-const AllExams = ({exam}) => {
+const AllExams = () => {
+
+  
 
     return(
        
@@ -26,32 +27,11 @@ const AllExams = ({exam}) => {
                 <th>Data</th>
             </thead>
             <tbody>
-            <tr> 
-               
-                {exam.map((exams)=>(
-                    <div key={exams.id}>
-                        <th>{exams.name}</th>
-                        <th>{exams.date}</th>
-                    </div>
-                    
-                ))}
-                
-                <Box
-                display="flex"
-                
-                >
-                    <IconButton><DeleteIcon/></IconButton>
-                    <IconButton><EditIcon/></IconButton>
-                </Box>
-            </tr>
+                <ExamItem/>
             </tbody>
             
         </table> 
         
-       
-            
-            
-       
     </Box>
     )
 }
