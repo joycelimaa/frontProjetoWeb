@@ -2,7 +2,6 @@ import {
 Box, useTheme, Typography, IconButton, Button,
 Dialog, FormControl, FormGroup, Input, InputLabel 
 } from "@mui/material";
-
 import React from "react";
 import { tokens } from "../../theme";
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -11,6 +10,7 @@ import {nanoid} from 'nanoid';
 import NotesList from "../../components/NotesList";
 import AllExams from "../../components/AllExams";
 import UseExamForm from "../../components/UseExamForm";
+import { addExams } from "../../services/localstorage";
 
 
 function Update(){
@@ -85,8 +85,9 @@ function Update(){
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        console.log(exam)
-        functionClosePopup()
+        addExams(exam)
+        //console.log(exam)
+        resetExam()
         //setExam([...exam, { id:1, name: exam.name, date: exam.date }])
     }
     

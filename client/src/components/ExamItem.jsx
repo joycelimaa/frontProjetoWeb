@@ -4,11 +4,13 @@ import { IconButton, Box } from "@mui/material";
 
 
 const ExamItem = ({exam}) => {
+    const {id, name, date} = exam
+
     return(
     <tr> 
                
-        <th>nome</th>
-        <th>data</th>
+        <th>{name}</th>
+        <th>{date}</th>
         
         <Box
         display="flex"

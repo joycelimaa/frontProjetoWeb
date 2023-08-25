@@ -1,14 +1,8 @@
 import { useState } from "react"
 
-const UseExamForm = () =>{
+const UseExamForm = (initialState = {}) =>{
     
-    const initialValues = [{
-        id:1,
-        name: '',
-        date: '', 
-    }]
-
-    const [exam, setExam] = useState(initialValues)
+    const [exam, setExam] = useState(initialState)
 
     const onValueChange = ({target}) =>{ 
         setExam({
