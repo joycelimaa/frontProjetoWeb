@@ -9,12 +9,15 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import Topbar from './scenes/global/Topbar'
 import Sidebar from './scenes/global/Sidebar'
 
+
+import { Login } from './pages/Login'
+import { SignUp } from './pages/SignUp'
+
 function App() {
 
   const [theme,colorMode] = useMode()
 
   return (
-   
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -30,6 +33,14 @@ function App() {
               <Route path='/' element={<Register/>}></Route>
               <Route path='/create' element={<CreateUser/>}></Route>
               <Route path='/update' element={<Update/>}></Route>
+
+              {/* 
+                TODO: CONFIGURAR AS RODAS COMO DEVER SER
+                LOGIN / REGISTER -> SISTEMA 
+              */}
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/signup" element={<SignUp />}></Route>
+            
 
             </Routes>
             </BrowserRouter>
