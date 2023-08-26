@@ -1,12 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useState } from "react";
 import { LayoutComponents } from "../../assets/LayoutComponents";
 import "../../assets/login-register.css";
+import axios from "axios";
 
 export const SignUp = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isRegistered, setIsRegistered] = useState(false);
+    const [error, setError] = useState(null);
+
+    const handleSignUp = async () => {
+        try {
+            const response = await axios.post("http://localhost:5000/register", {
+                name, 
+                email, 
+                password
+            })
+
+            if (response.status === 201) {
+                console.log('Registration successful');
+                setIsRegistered(true);
+                setError(null);
+
+                const token = response.data.token;
+                localStorage.setItem(token);  // Salva o token no localStorage
+            }
+        }
+        catch (error) {
+            console.log("Registration Failed: ", error);
+            setError("Erro ao registrar. Verifique suas informações");
+            window.location.reload(); // Recarrega a página em caso de erro
+        }
+    }
 
     return (
         <LayoutComponents >
@@ -47,8 +74,19 @@ export const SignUp = () => {
                 </div>
 
                 <div className="container-login-form-btn">
-                    <button className="login-form-btn">Login</button>
+                    <button onClick={handleSignUp} className="login-form-btn">Login</button>
                 </div>
+
+                {isRegistered && (
+                    <div>
+                        <p className="success-message">Registro bem-sucedido! Agora você pode acessar com suas credenciais.</p>
+                        <Redirect to="/login" />
+                    </div>
+                )}
+
+                {error && (
+                    <p className="error-message">{error}</p>
+                )}
 
                 <div className="text-center">
                     <span className="txt1">Já possui conta? </span>
