@@ -25,7 +25,7 @@ export const SignUp = () => {
                 setError(null);
 
                 const token = response.data.token;
-                localStorage.setItem(token);  // Salva o token no localStorage
+                localStorage.setItem(token);  // Salva o token no localStorage 
             }
         }
         catch (error) {
