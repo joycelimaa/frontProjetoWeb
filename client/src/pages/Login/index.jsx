@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { LayoutComponents } from "../../assets/LayoutComponents";
@@ -50,7 +50,6 @@ export const Login = () => {
 
     return (
         <LayoutComponents>
-            <BrowserRouter>
                 <form className="login-form">
                     <span className="login-form-title">Bem vindo</span>
 
@@ -92,14 +91,12 @@ export const Login = () => {
 
                     <div className="text-center">
                         <span className="txt1">Não possui conta? </span>
-                        <Link className="txt2" to="/register">
+                        <Link className="txt2" to="/signup">
                             Criar conta.
                         </Link>
                     </div>
                 </form>
 
-
-            </BrowserRouter>
         </LayoutComponents>
     );
 };

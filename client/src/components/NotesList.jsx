@@ -2,7 +2,8 @@ import Note from "./Note";
 import { Box } from "@mui/material";
 import AddNote from "./addNote";
 
-const NotesList = ({notes, handleAddNote, handleDeleteNote}) =>{
+const NotesList = ({notes, handleAddNote, handleDeleteNote}) => {
+
     return(
         <Box 
             display="grid"

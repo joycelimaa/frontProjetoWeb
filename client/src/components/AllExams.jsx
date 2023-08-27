@@ -7,27 +7,25 @@ import { getListOfExams } from "../services/localstorage";
 const AllExams = () => {
 
     const[exams, setExams] = useState([])
-  
+    
     useEffect(()=>{
         setExams(getListOfExams())
     }, [])
     //------------------------------------------------
 
-    return(
-       
+    return(    
         <Box 
-        bgcolor="grey"
-        borderRadius="10px"
-        p="10px"
-        maxHeight="170px"
-        maxWidth="600px"
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between" 
-        whiteSpace="normal" 
-        overflow="auto"
-        >
-         
+            bgcolor="grey"
+            borderRadius="10px"
+            p="10px"
+            maxHeight="170px"
+            maxWidth="600px"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between" 
+            whiteSpace="normal" 
+            overflow="auto"
+        >     
         {
             
             exams?.length >0 ?(
@@ -45,7 +43,6 @@ const AllExams = () => {
                 <Typography>Não há exames </Typography>
             )
         } 
-   
     </Box>
     )
 }

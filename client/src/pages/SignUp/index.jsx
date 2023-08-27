@@ -1,4 +1,4 @@
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { LayoutComponents } from "../../assets/LayoutComponents";
 import "../../assets/login-register.css";

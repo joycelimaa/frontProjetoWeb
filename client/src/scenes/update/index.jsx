@@ -37,14 +37,15 @@ function Update(){
     ]);
 
     const addNote=(text)=>{
-       const date = new Date()
-       const newNote= {
-        id:nanoid(),
-        text: text,
-        date: date.toLocaleDateString()
-       }
-       const newNotes=[...notes, newNote]
-       setNotes(newNotes)
+        const date = new Date()
+        const newNote= {
+            id:nanoid(),
+            text: text,
+            date: date.toLocaleDateString()
+        }
+        
+        const newNotes=[...notes, newNote]
+        setNotes(newNotes)
     }
 
     const deleteNote = (id) =>{
@@ -150,11 +151,11 @@ function Update(){
                                 />
                             </FormControl>
                             <Box
-                             display="flex"
-                             justifyContent="end"
-                             alignItems="center"
-                             mr="20px"
-                             mb="10px"
+                                display="flex"
+                                justifyContent="end"
+                                alignItems="center"
+                                mr="20px"
+                                mb="10px"
                             >
                                 <Button  onClick={handleSubmit} variant="contained" sx={{m:"0px", p:"10px"}}><Typography>salvar</Typography></Button>
                                 <Button variant="contained" sx={{m:"10px", p:"10px"}} onClick={functionClosePopup}><Typography>fechar</Typography></Button>
@@ -225,7 +226,6 @@ function Update(){
                         >
                         Anotações
                         </Typography>
-                       
                     </Box>
 
                     <Box> 
