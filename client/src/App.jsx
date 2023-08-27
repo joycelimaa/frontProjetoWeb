@@ -11,13 +11,16 @@ import Sidebar from './scenes/global/Sidebar'
 import { ExamForm } from './components/ExamForm'
 import ExamPopup from './components/ExamPopup'
 
+
+import { Login } from './pages/Login'
+import { SignUp } from './pages/SignUp'
+
 function App() {
 
   const [theme,colorMode] = useMode()
   
 
   return (
-   
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -34,6 +37,14 @@ function App() {
               <Route path='/create' element={<CreateUser/>}></Route>
               <Route path='/update' element={<Update/>}></Route>
               <Route path='/edit-exam/:id' element={<ExamPopup open={true} />}></Route>
+
+              {/* 
+                TODO: CONFIGURAR AS RODAS COMO DEVER SER
+                LOGIN / REGISTER -> SISTEMA 
+              */}
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/signup" element={<SignUp />}></Route>
+            
 
             </Routes>
             </BrowserRouter>
