@@ -15,10 +15,15 @@ const UseExamForm = (initialState = {}) =>{
         setExam(initialState)
     }
 
+    const resetingExam = (newValues) =>{
+        setInputValues(newValues) 
+    }
+
     return{
         exam,
         onValueChange,
-        resetExam
+        resetExam,
+        resetingExam
     }
 
 

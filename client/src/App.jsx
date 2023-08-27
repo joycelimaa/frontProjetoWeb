@@ -8,10 +8,13 @@ import { ColorModeContext,useMode } from './theme'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import Topbar from './scenes/global/Topbar'
 import Sidebar from './scenes/global/Sidebar'
+import { ExamForm } from './components/ExamForm'
+import ExamPopup from './components/ExamPopup'
 
 function App() {
 
   const [theme,colorMode] = useMode()
+  
 
   return (
    
@@ -30,6 +33,7 @@ function App() {
               <Route path='/' element={<Register/>}></Route>
               <Route path='/create' element={<CreateUser/>}></Route>
               <Route path='/update' element={<Update/>}></Route>
+              <Route path='/edit-exam/:id' element={<ExamPopup open={true} />}></Route>
 
             </Routes>
             </BrowserRouter>
@@ -40,6 +44,8 @@ function App() {
     </ColorModeContext.Provider>
   )
 }
+
+
 
 export default App;
 

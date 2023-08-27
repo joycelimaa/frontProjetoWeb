@@ -8,9 +8,8 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import { useState, useEffect } from 'react';
 import {nanoid} from 'nanoid';
 import NotesList from "../../components/NotesList";
-import AllExams from "../../components/AllExams";
-import UseExamForm from "../../components/UseExamForm";
-import { addExams } from "../../services/localstorage";
+
+import { ExamForm } from "../../components/ExamForm";
 
 
 function Update(){
@@ -67,29 +66,7 @@ function Update(){
         )
     },[notes])
 
-    //Exam part--------------------------------------
-    //Exam Popup
-    const [open, openChange] = useState(false)
-    const functionOpenPopup = () => {
-        openChange(true)
-    }
-    const functionClosePopup = () => {
-        openChange(false)
-    }
-
-    const {exam, onValueChange, resetExam} = UseExamForm({
-        
-        name: '',
-        date: '',
-    })
-
-    const handleSubmit = (e) =>{
-        e.preventDefault()
-        addExams(exam)
-        //console.log(exam)
-        resetExam()
-        //setExam([...exam, { id:1, name: exam.name, date: exam.date }])
-    }
+    
     
     return(
 
@@ -110,68 +87,7 @@ function Update(){
                 gridRow="span 2"
                 backgroundColor={colors.primary[400]}
                 >
-                    <Box
-                    mt="20px"
-                    p="0 20px"
-                    display="flex "
-                    justifyContent="space-between"
-                    alignItems="center"
-                    >
-                        <Typography
-                        variant="h4"
-                        fontWeight="600"
-                        color={colors.grey[100]}
-                        >
-                        Exames
-                        
-                        </Typography>
-                        <IconButton onClick={functionOpenPopup}>
-                        <AddBoxIcon />
-                        </IconButton> 
-                        
-                        {/* Exam Popup */}
-                        <Dialog open={open}  onClose={functionClosePopup} fullWidth>
-                        <FormGroup >
-                            <Typography m="20px"ml="28px" mb="0px" variant="h3">Adicionar Exame</Typography>
-                            <FormControl sx={{m:"20px 20px 10px", p:"10px"}}>
-                                <InputLabel ><Typography variant="h5">Exame</Typography></InputLabel>
-                                <Input 
-                                    onChange={onValueChange} 
-                                    name="name" 
-                                    value={exam.name}
-                                />
-                            </FormControl>
-                            <FormControl sx={{m:"10px  20px 10px", p:"10px"}}>
-                                <InputLabel><Typography variant="h5">Data</Typography></InputLabel>
-                                <Input  
-                                    onChange={onValueChange} 
-                                    name="date" 
-                                    value={exam.date} 
-                                />
-                            </FormControl>
-                            <Box
-                             display="flex"
-                             justifyContent="end"
-                             alignItems="center"
-                             mr="20px"
-                             mb="10px"
-                            >
-                                <Button  onClick={handleSubmit} variant="contained" sx={{m:"0px", p:"10px"}}><Typography>salvar</Typography></Button>
-                                <Button variant="contained" sx={{m:"10px", p:"10px"}} onClick={functionClosePopup}><Typography>fechar</Typography></Button>
-                            </Box>
-                            
-                        </FormGroup>
-                        </Dialog> 
-                    </Box>
-                    <Box
-                    mt="20px"
-                    p="0 20px"
-                    display="flex "
-                    justifyContent="space-between"
-                    alignItems="center"
-                    >
-                        <AllExams exam={exam} ></AllExams>
-                    </Box>
+                    <ExamForm/>
                 </Box>
 
                 {/*prescription section*/}

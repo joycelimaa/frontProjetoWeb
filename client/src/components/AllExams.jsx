@@ -37,7 +37,7 @@ const AllExams = () => {
                     <th>Data</th>
                 </thead>
                 <tbody>
-                    {exams.map(exam => <ExamItem exam={exam} key={exam.id} />)}
+                    {exams.map(exam => <ExamItem  exam={exam} key={exam.id} />)}
                     
                 </tbody>
             </table> 

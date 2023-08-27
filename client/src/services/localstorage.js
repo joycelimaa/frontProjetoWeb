@@ -15,3 +15,16 @@ export const addExams = (exam) =>{
     localStorage["@exams"] = JSON.stringify(exams)
 }
 
+
+export const getExamById = (id) =>{
+    const exams = getListOfExams()
+    const exam = exams.find((exam)=> exam.id === id)
+    return exam
+}
+
+export const editEmployee = (id, newExam) =>{
+    let exams = getListOfExams()
+    exams = exams.filter(exam => exam.id !== id)
+    exams.push(newExam)
+    localStorage["@exams"] = JSON.stringify(exams)
+}
