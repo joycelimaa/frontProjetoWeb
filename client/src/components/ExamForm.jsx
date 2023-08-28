@@ -1,7 +1,7 @@
-import { 
+import {
     Box, useTheme, Typography, IconButton, Button,
-    Dialog, FormControl, FormGroup, Input, InputLabel 
-    } from "@mui/material";
+    Dialog, FormControl, FormGroup, Input, InputLabel
+} from "@mui/material";
 import { useEffect, useState } from "react"
 import { addExams } from "../services/localstorage"
 import UseExamForm from "./UseExamForm"
@@ -12,32 +12,32 @@ import { useParams } from "react-router-dom";
 import { getExamById } from "../services/localstorage";
 import ExamPopup from "./ExamPopup";
 
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
 
-export const ExamForm=()=>{
+export const ExamForm = () => {
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const {id} = useParams()
-    
-    const {exam, onValueChange, resetExam, resetingExam} = UseExamForm({
-        
+    const { id } = useParams()
+
+    const { exam, onValueChange, resetExam, resetingExam } = UseExamForm({
+
         name: '',
         date: '',
     })
 
     //Exam Popup
-    useEffect(()=>{
-        if(id){
+    useEffect(() => {
+        if (id) {
             const exam = getExamById(id);
             resetingExam(exam)
         }
-    },[id])
+    }, [id])
 
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault()
-        id ? editEmployee(id, exam) :  addExams({id: nanoid() ,...exam})
+        id ? editEmployee(id, exam) : addExams({ id: nanoid(), ...exam })
         resetExam()
     }
 
@@ -49,7 +49,7 @@ export const ExamForm=()=>{
         openChange(false)
     }
 
-    return(
+    return (
         <><Box
             mt="20px"
             p="0 20px"
@@ -70,24 +70,24 @@ export const ExamForm=()=>{
             </IconButton>
 
             {/* Exam Popup */}
-            <ExamPopup 
+            <ExamPopup
                 onValueChange={onValueChange}
-                 handleSubmit={handleSubmit} 
-                 id={id} 
-                 functionClosePopup={functionClosePopup} 
-                 open={open}  
-                 exam={exam} 
+                handleSubmit={handleSubmit}
+                id={id}
+                functionClosePopup={functionClosePopup}
+                open={open}
+                exam={exam}
             />
 
         </Box>
-        <Box
-            mt="20px"
-            p="0 20px"
-            display="flex "
-            justifyContent="space-between"
-            alignItems="center"
-        >
+            <Box
+                mt="20px"
+                p="0 20px"
+                display="flex "
+                justifyContent="space-between"
+                alignItems="center"
+            >
                 <AllExams exam={exam}></AllExams>
-        </Box></>
+            </Box></>
     )
 }
