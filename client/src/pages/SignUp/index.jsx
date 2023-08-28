@@ -74,7 +74,7 @@ export const SignUp = () => {
                 </div>
 
                 <div className="container-login-form-btn">
-                    <button onClick={handleSignUp} className="login-form-btn">Login</button>
+                    <button onClick={handleSignUp} className="login-form-btn">Criar conta</button>
                 </div>
 
                 {isRegistered && (
