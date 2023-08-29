@@ -14,7 +14,7 @@ export const SignUp = () => {
 
     const handleSignUp = async () => {
         try {
-            const response = await axios.post("http://localhost:8081/api/v1/auth/register", {
+            const response = await axios.post("http://127.0.0.1:27017/api/v1/auth/register", {
                 name, 
                 email, 
                 password,
@@ -33,7 +33,7 @@ export const SignUp = () => {
         catch (error) {
             console.log("Registration Failed: ", error);
             setError("Erro ao registrar. Verifique suas informações");
-            window.location.reload(); // Recarrega a página em caso de erro
+            // window.location.reload(); // Recarrega a página em caso de erro
         }
     }
 
