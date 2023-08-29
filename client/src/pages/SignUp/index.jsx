@@ -12,16 +12,17 @@ export const SignUp = () => {
     const [isRegistered, setIsRegistered] = useState(false);
     const [error, setError] = useState(null);
 
-    const handleSignUp = async () => {
+    const handleSignUp = async (e) => {
+        e.preventDefault();
         try {
-            const response = await axios.post("http://127.0.0.1:27017/api/v1/auth/register", {
+            const response = await axios.post("http://localhost:8081/api/v1/auth/register", {
                 name, 
                 email, 
                 password,
                 confirmPassword
             })
 
-            if (response.status === 200) {
+            if (response.status === 201) {
                 console.log('Registration successful');
                 setIsRegistered(true);
                 setError(null);
@@ -32,7 +33,7 @@ export const SignUp = () => {
         }
         catch (error) {
             console.log("Registration Failed: ", error);
-            setError("Erro ao registrar. Verifique suas informações");
+            
             // window.location.reload(); // Recarrega a página em caso de erro
         }
     }
