@@ -8,18 +8,20 @@ export const SignUp = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [isRegistered, setIsRegistered] = useState(false);
     const [error, setError] = useState(null);
 
     const handleSignUp = async () => {
         try {
-            const response = await axios.post("http://localhost:5000/register", {
+            const response = await axios.post("http://localhost:8081/api/v1/auth/register", {
                 name, 
                 email, 
-                password
+                password,
+                confirmPassword
             })
 
-            if (response.status === 201) {
+            if (response.status === 200) {
                 console.log('Registration successful');
                 setIsRegistered(true);
                 setError(null);
@@ -73,14 +75,24 @@ export const SignUp = () => {
                     <span className="focus-input" data-placeholder="Senha"></span>
                 </div>
 
+                {/* Campo do input de confirmar senha */}
+                <div className="wrap-input">
+                    <input 
+                        className={confirmPassword != "" ? "has-val input" : "input"}
+                        type="password" 
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    <span className="focus-input" data-placeholder="Confirmar sua senha"></span>
+                </div>
+
                 <div className="container-login-form-btn">
-                    <button onClick={handleSignUp} className="login-form-btn">Login</button>
+                    <button onClick={handleSignUp} className="login-form-btn">Criar conta</button>
                 </div>
 
                 {isRegistered && (
                     <div>
                         <p className="success-message">Registro bem-sucedido! Agora você pode acessar com suas credenciais.</p>
-                        <Redirect to="/login" />
                     </div>
                 )}
 

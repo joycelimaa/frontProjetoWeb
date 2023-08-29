@@ -31,7 +31,7 @@ export const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post("{//localhost:}", {
+            const response = await axios.post("http://localhost:8081/api/v1/auth/login", {
                 email,
                 password
             });
