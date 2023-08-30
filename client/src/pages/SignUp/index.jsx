@@ -12,6 +12,7 @@ function SignUp() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [error, setError] = useState(null);
 
+<<<<<<< HEAD
   const handleSignUp = async () => {
     try {
       const response = await axios.post(
@@ -21,6 +22,31 @@ function SignUp() {
           email,
           password,
           confirmPassword,
+=======
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post("http://localhost:8081/api/v1/auth/register", {
+                name, 
+                email, 
+                password,
+                confirmPassword
+            })
+
+            if (response.status === 201) {
+                console.log('Registration successful');
+                setIsRegistered(true);
+                setError(null);
+
+                const token = response.data.token;
+                localStorage.setItem(token);  // Salva o token no localStorage 
+            }
+        }
+        catch (error) {
+            console.log("Registration Failed: ", error);
+            
+            // window.location.reload(); // Recarrega a página em caso de erro
+>>>>>>> 048118803bf053b902c61cb44f32529a006d1ef9
         }
       );
 
