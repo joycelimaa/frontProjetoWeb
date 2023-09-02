@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import api from "./service";
 
 export const ACESS_TOKEN_KEY = "@"
 
 export function isAuth() {
+    console.log(localStorage.getItem(ACESS_TOKEN_KEY))
     return localStorage.getItem(ACESS_TOKEN_KEY) !== null;
 }
 
@@ -23,11 +23,10 @@ export function authLogout() {
 export async function signIn(data) {
     try {
         const { email, password } = data;
-        const res = await api.post("/v1/auth/login", { email, password});
+        const res = await api.post("/v1/auth/login", { email, password });
         const { token } = res.data;
-        console.log(res);
         authLogin(token);
-    } 
+    }
     catch (error) {
         return error.data;
     }
@@ -40,9 +39,9 @@ export async function signUp(data) {
             email,
             password,
             confirmPassword
-          } = data;
-          const res = await api.post("/v1/auth/register", { name, email, password, confirmPassword });
-          return res.data;
+        } = data;
+        const res = await api.post("/v1/auth/register", { name, email, password, confirmPassword });
+        return res.data;
     } catch (error) {
         return error.data;
     }
@@ -50,10 +49,17 @@ export async function signUp(data) {
 
 export async function getSub() {
     const acess_token = getAcessToken();
+
     try {
         const res = await api.get("/v1/user/me", {
-            headers: { 'Authorization': `Bearer ${acess_token}`}
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8",
+                "Authorization": `Bearer ${acess_token}`
+            },
+            withCredentials: true
         });
+
+        console.log(res.data);
         return res.data;
     } catch (error) {
         console.log(error)

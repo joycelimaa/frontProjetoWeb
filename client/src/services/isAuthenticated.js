@@ -5,12 +5,7 @@ async function isAuthenticated() {
 
     if (userToken) {
         try {
-            let response = await axios.get('http://localhost:8081/api/v1/user/me', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token,
-                },
-            });
+            let response = await axios.get('/v1/user/me');
 
             return response.data;
         } catch (error) {
