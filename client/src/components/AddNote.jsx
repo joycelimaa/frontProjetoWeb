@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material"
 import { useState } from "react";
-import axios from "axios";
+
 
 const AddNote = ({handleAddNote}) =>{
 
@@ -15,26 +15,15 @@ const AddNote = ({handleAddNote}) =>{
         }  
     }
 
-    const handleSaveNote = async () =>{
-        if(noteText.trim().length > 0){ //verifies if after removing the empty space from the begginer and end of a string there is still some text
-            try {
-                await axios.post("localhost:5000", {
-                    noteText: noteText.trim() // Envia o texto da nota após remoção de espaços em branco
-                })
-                
-                // Se a requisição foi bem-sucedida, chama a função handleAddNote para adicionar a nota localmente
-                handleAddNote(noteText)
-    
-                setNoteText('') //after a note is added the font is reset
-            } catch (error) {
-                console.log("Erro ao enviar essa nota");
-            }
-            
+    const handleSaveNote = () =>{
+        if(noteText.trim().length>0){ //verifies if after removing the empty space from the begginer and end of a string there is still some text
+            handleAddNote(noteText)
+            setNoteText('') //after a note is added the font is reset
         }
+
     }
 
     return(
-        
         <Box
         bgcolor="grey"
         borderRadius="10px"
@@ -68,9 +57,3 @@ const AddNote = ({handleAddNote}) =>{
 
 
 export default AddNote;
-
-
-
-
-
-

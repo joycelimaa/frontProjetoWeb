@@ -8,8 +8,9 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import { useState, useEffect } from 'react';
 import {nanoid} from 'nanoid';
 import NotesList from "../../components/NotesList";
-
 import { ExamForm } from "../../components/ExamForm";
+import PrescriptionList from "../../components/Prescription/PrescriptionList";
+import PrescriptionContextProvider from "../../contexts/PrescriptionContext";
 
 
 function Update(){
@@ -23,16 +24,7 @@ function Update(){
             text:"My note",
             date: "10/08/2022",
         },
-        {
-            id: nanoid(),
-            text:"My second note",
-            date: "11/08/2022",
-        },
-        {
-            id: nanoid(),
-            text:"My third note",
-            date: "12/08/2022",
-        },
+        
     ]);
 
     const addNote=(text)=>{
@@ -66,8 +58,6 @@ function Update(){
         )
     },[notes])
 
-    
-    
     return(
 
         <Box  m="20px" >
@@ -97,24 +87,13 @@ function Update(){
                 gridRow="span 2"
                 backgroundColor={colors.primary[400]}
                 >
-                    <Box
-                    mt="20px"
-                    p="0 20px"
-                    display="flex "
-                    justifyContent="space-between"
-                    alignItems="center"
-                    >
-                        <Typography
-                        variant="h4"
-                        fontWeight="600"
-                        color={colors.grey[100]}
-                        >
-                        Prescrição
-                        </Typography>
-                        <IconButton >
-                            <AddBoxIcon /> 
-                        </IconButton> 
-                    </Box>
+                    
+                    
+                        <PrescriptionContextProvider>
+                            <PrescriptionList/>
+                        </PrescriptionContextProvider>
+                        
+                    
                 </Box>
 
                 {/*Notes section*/}

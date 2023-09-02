@@ -10,7 +10,7 @@ import Topbar from './scenes/global/Topbar'
 import Sidebar from './scenes/global/Sidebar'
 import { ExamForm } from './components/ExamForm'
 import ExamPopup from './components/ExamPopup'
-
+import Home from './scenes/home'
 
 import { Login } from './pages/Login'
 import { SignUp } from './pages/SignUp'
@@ -27,14 +27,14 @@ function App() {
         <div className='app' >
           <BrowserRouter>
           <Sidebar/>
-          </BrowserRouter>
+          
           <main className='content' >
             <Topbar />
-            <BrowserRouter>
             
             <Routes>
-              <Route path='/' element={<Register/>}></Route>
-              <Route path='/create' element={<CreateUser/>}></Route>
+            <Route path='/' element={<Home/>}></Route>
+              <Route path='/registrar-paciente' element={<Register/>}></Route>
+              <Route path='/create' ></Route>
               <Route path='/update' element={<Update/>}></Route>
               <Route path='/edit-exam/:id' element={<ExamPopup open={true} />}></Route>
 
@@ -47,9 +47,9 @@ function App() {
             
 
             </Routes>
-            </BrowserRouter>
-            
+
           </main>
+          </BrowserRouter>
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>

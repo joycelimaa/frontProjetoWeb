@@ -4,7 +4,7 @@ import { IconButton, Box, Snackbar, Modal, TextField, Button } from "@mui/materi
 import MuiAlert from "@mui/material/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 
 const ExamItem = ({exam}) => {
     const {id, name, date} = exam;
@@ -21,7 +21,7 @@ const ExamItem = ({exam}) => {
     // TODO: TESTAR QUANDO FOR DELETADO (Ainda nn completa por conta que nn consome a api)
     const handleDeleteNote = async () => {
         try {
-            await axios.delete(`http://localhost:5000/exams/${id}`);
+            await axios.delete(`http://localhost:5173/exams/${id}`);
             setShowSnackbar(true);
         } catch (error) {
             console.log("Erro ao deletar exame: ", error);
@@ -48,7 +48,7 @@ const ExamItem = ({exam}) => {
     const handleSaveEdit = async () => {
         try {
             // Realizar a atualização no backend, enviando os dados editados para a API
-            await axios.put(`http://localhost:5000/exams/${id}`, {
+            await axios.put(`http://localhost:5173/exams/${id}`, {
                 name: editedName,
                 date: editedDate
             });
