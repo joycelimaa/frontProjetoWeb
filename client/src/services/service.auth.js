@@ -51,7 +51,7 @@ export async function getSub() {
     const acess_token = getAcessToken();
 
     try {
-        const res = await api.get("/v1/user/me", {
+        const res = await api.get("/v1/auth/me", {
             headers: {
                 "Content-Type": "application/json;charset=UTF-8",
                 "Authorization": `Bearer ${acess_token}`
