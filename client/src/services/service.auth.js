@@ -3,8 +3,8 @@ import api from "./service";
 export const ACESS_TOKEN_KEY = "@"
 
 export function isAuth() {
-    // return localStorage.getItem(ACESS_TOKEN_KEY) !== null;
-    return false;
+    console.log(localStorage.getItem(ACESS_TOKEN_KEY));
+    return localStorage.getItem(ACESS_TOKEN_KEY) !== null;
 }
 
 export function getAcessToken() {
@@ -22,13 +22,47 @@ export function authLogout() {
 
 export async function signIn(data) {
     try {
-        const { login, password } = data;
-        const res = await api.post(`/v1/auth/login`, { login, password});
+        const { email, password } = data;
+        const res = await api.post("/v1/auth/login", { email, password });
         const { token } = res.data;
-        
+        console.log(res);
         authLogin(token);
+    }
+    catch (error) {
+        return error.data;
+    }
+}
+
+export async function signUp(data) {
+    try {
+        const {
+            name,
+            email,
+            password,
+            confirmPassword
+        } = data;
+        const res = await api.post("/v1/auth/register", { name, email, password, confirmPassword });
+        return res.data;
+    } catch (error) {
+        return error.data;
+    }
+}
+
+export async function getSub() {
+    const acess_token = getAcessToken();
+
+    try {
+        const res = await api.get("/v1/user/me", {
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8",
+                "Authorization": `Bearer ${acess_token}` 
+            },
+            withCredentials: true
+        });
+        
+        return res.data;
     } 
     catch (error) {
-        return error;
+        console.log(error)
     }
 }

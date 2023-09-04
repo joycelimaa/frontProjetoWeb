@@ -16,10 +16,12 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import "../../App.css";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
   return (
     <MenuItem
       active={selected === title}
@@ -43,6 +45,7 @@ const Sidebar = () => {
 
   return (
     <Box
+      className="fixed-sidebar"
       sx={{
         "& .pro-sidebar-inner": {
           background: `${colors.primary[400]} !important`,
@@ -134,14 +137,15 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Registrar Paciente"
-              to="/team"
+              Link
+              to="/registrar-paciente"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Monitorar Lesão"
-              to="/contacts"
+              to="/monitorar-lesao"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -153,7 +157,6 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            
           </Box>
         </Menu>
       </ProSidebar>
