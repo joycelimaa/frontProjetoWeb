@@ -142,7 +142,7 @@ const Sidebar = () => {
             />
             <Item
               title="Monitorar Lesão"
-              to="/contacts"
+              to="/monitorar-lesao"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

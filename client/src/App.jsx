@@ -14,6 +14,7 @@ import Home from './scenes/home'
 
 import { Login } from './pages/Login'
 import { SignUp } from './pages/SignUp'
+import MonitorarLesão from './scenes/monitorarLesão'
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
               <Route path='/registrar-paciente' element={<Register/>}></Route>
               <Route path='/create' ></Route>
               <Route path='/update' element={<Update/>}></Route>
+              <Route path='/monitorar-lesao' element={<MonitorarLesão/>}></Route>
               <Route path='/edit-exam/:id' element={<ExamPopup open={true} />}></Route>
 
               {/* 
