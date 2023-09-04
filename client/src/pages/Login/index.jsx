@@ -16,8 +16,9 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const data = { email, password }
+      const data = { email, password };
       navigate("/");
+      console.log(data);
       await signIn(data);
     } catch (error) {
       console.log(error)
