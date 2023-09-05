@@ -36,7 +36,7 @@ function App() {
             <Route path='/' element={<Home/>}></Route>
               <Route path='/registrar-paciente' element={<Register/>}></Route>
               <Route path='/create' ></Route>
-              <Route path='/update' element={<Update/>}></Route>
+              <Route path='/update/:id' element={<Update/>}></Route>
               <Route path='/monitorar-lesao' element={<MonitorarLesão/>}></Route>
               <Route path='/edit-exam/:id' element={<ExamPopup open={true} />}></Route>
 

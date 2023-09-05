@@ -7,15 +7,19 @@ import { PacientContext } from "../../contexts/PacientsContext";
 import { useState, useContext } from "react";
 import { useEffect } from "react";
 import EditFormPacient from "./EditFormPacients";
+import Update from "../../scenes/update";
+import { useNavigate } from "react-router-dom";
 
 
 const Pacient = ({pacient, acao}) =>{
 
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(true)
-    const handleClose = () => setShow(false)  
+    const handleClose = () => setShow(false)
 
     const {deletePacient} = useContext(PacientContext)
+
+    const navigate = useNavigate()
 
     useEffect(() =>{
         handleClose()
@@ -39,7 +43,7 @@ const Pacient = ({pacient, acao}) =>{
         {acao ? <td><IconButton onClick={handleShow}  ><EditIcon /></IconButton>
                 <IconButton onClick={() => deletePacient(pacient.id)}  ><DeleteIcon /></IconButton></td> 
             : 
-                <td><IconButton  ><Link to="/update"> <VisibilityIcon /></Link></IconButton></td>
+                <td><IconButton onClick={()=> navigate(`/update/${pacient.id}`)} > <VisibilityIcon /></IconButton></td>
         }
         
 

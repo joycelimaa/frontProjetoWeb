@@ -16,7 +16,7 @@ const UseExamForm = (initialState = {}) =>{
     }
 
     const resetingExam = (newValues) =>{
-        setInputValues(newValues) 
+        setExam(newValues) 
     }
 
     return{

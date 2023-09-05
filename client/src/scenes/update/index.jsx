@@ -11,12 +11,15 @@ import NotesList from "../../components/NotesList";
 import { ExamForm } from "../../components/ExamForm";
 import PrescriptionList from "../../components/Prescription/PrescriptionList";
 import PrescriptionContextProvider from "../../contexts/PrescriptionContext";
+import { useParams } from "react-router-dom";
 
 
 function Update(){
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    
+    const id = useParams()
+
+
    //Notes part--------------------------------------
     const [notes, setNotes] = useState([
         {
