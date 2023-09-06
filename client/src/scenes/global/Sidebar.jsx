@@ -1,18 +1,24 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
-import profilePicture from "../../assets/perfilnutes.jpg";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import { ColorModeContext } from "../../theme";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
+import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import "../../App.css";
 
-const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
+const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -20,75 +26,29 @@ const Item = ({ title, to, icon, selected, setSelected, isCollapsed }) => {
     <MenuItem
       active={selected === title}
       style={{
-        color: theme.palette.mode === "dark" ? colors.grey[100] : "white",
+        color: colors.grey[100],
       }}
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      {/* Only show the title when isCollapsed is false */}
-      {!isCollapsed && <Typography>{title}</Typography>}
+      <Typography>{title}</Typography>
       <Link to={to} />
     </MenuItem>
   );
 };
 
 const Sidebar = () => {
-  // Function to check if the screen width is less than 600
-  const isScreenSmall = () => window.innerWidth < 600;
-
-  // State to hold the current screen width and isCollapsed state
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  // Function to update the isCollapsed state based on the screen width
-  const updateIsCollapsed = () => {
-    setIsCollapsed(isScreenSmall());
-  };
-
-  // Add event listener to update screen width when the window is resized
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  // Update isCollapsed state when the screen width changes
-  useEffect(() => {
-    updateIsCollapsed();
-    // eslint-disable-next-line
-  }, [screenWidth]);
-
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-  // eslint-disable-next-line
-  const { toggleColorMode } = useContext(ColorModeContext);
-
-  const handleToggleSidebar = () => {
-    setIsCollapsed((prevState) => !prevState);
-  };
 
   return (
     <Box
-      className="sidebar"
+      className="fixed-sidebar"
       sx={{
-        backgroundColor:
-          theme.palette.mode === "dark"
-            ? colors.primary[400]
-            : colors.greenAccent[400],
         "& .pro-sidebar-inner": {
-          background: `${
-            theme.palette.mode === "dark"
-              ? colors.primary[400]
-              : colors.greenAccent[400]
-          } !important`,
+          background: `${colors.primary[400]} !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -105,87 +65,76 @@ const Sidebar = () => {
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: isCollapsed ? "center" : "flex-end",
-            alignItems: "center",
-            padding: "8px",
-          }}
-        >
-          <IconButton onClick={handleToggleSidebar}>
-            <MenuOutlinedIcon
-              style={{
-                color: "white",
-              }}
-            />
-          </IconButton>
-        </Box>
-
-        {!isCollapsed && (
-          <Box mb="25px">
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <img
-                alt="profile-user"
-                width="120"
-                height="120px"
-                src={profilePicture}
-                style={{ cursor: "pointer", borderRadius: "50%" }}
-              />
-            </Box>
-            <Box textAlign="center">
-              <Typography
-                variant="h2"
-                color={colors.grey[100]}
-                fontWeight="bold"
-                sx={{ m: "10px 0 0 0" }}
-              >
-                Nutes
-              </Typography>
-              <Typography
-                variant="h5"
-                color={
-                  theme.palette.mode === "dark"
-                    ? colors.greenAccent[500]
-                    : "white"
-                }
-              >
-                Núcleo de Tecnologias <br/>Estratégicas em Saúde
-              </Typography>
-            </Box>
-          </Box>
-        )}
-
         <Menu iconShape="square">
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems={isCollapsed ? "flex-start" : "flex-start"}
+          {/* LOGO AND MENU ICON */}
+          <MenuItem
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            style={{
+              margin: "10px 0 20px 0",
+              color: colors.grey[100],
+            }}
           >
-            {/* Removed the Data and Pages headers when sidebar is collapsed */}
+            {!isCollapsed && (
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                ml="15px"
+              >
+                <Typography variant="h3" color={colors.grey[100]}>
+                  Médico
+                </Typography>
+                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                  <MenuOutlinedIcon />
+                </IconButton>
+              </Box>
+            )}
+          </MenuItem>
 
+          {!isCollapsed && (
+            <Box mb="25px">
+              <Box display="flex" justifyContent="center" alignItems="center">
+                <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`../../assets/user.png`}
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                />
+              </Box>
+              <Box textAlign="center">
+                <Typography
+                  variant="h2"
+                  color={colors.grey[100]}
+                  fontWeight="bold"
+                  sx={{ m: "10px 0 0 0" }}
+                >
+                  Ed Roh
+                </Typography>
+                <Typography variant="h5" color={colors.greenAccent[500]}>
+                  VP Fancy Admin
+                </Typography>
+              </Box>
+            </Box>
+          )}
+
+          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Home"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-              isCollapsed={isCollapsed}
             />
 
-            {/* Removed Pages header when sidebar is collapsed */}
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={
-                  theme.palette.mode === "dark" ? colors.grey[300] : "white"
-                }
-                sx={{ m: "15px 0 5px 20px" }}
-              >
-                Páginas
-              </Typography>
-            )}
-
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Páginas
+            </Typography>
             <Item
               title="Registrar Paciente"
               Link
@@ -193,7 +142,6 @@ const Sidebar = () => {
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-              isCollapsed={isCollapsed}
             />
             <Item
               title="Monitorar Lesão"
@@ -201,7 +149,6 @@ const Sidebar = () => {
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-              isCollapsed={isCollapsed}
             />
             <Item
               title="Perfil"
@@ -209,7 +156,6 @@ const Sidebar = () => {
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-              isCollapsed={isCollapsed}
             />
           </Box>
         </Menu>
