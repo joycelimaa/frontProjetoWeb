@@ -1,6 +1,7 @@
 .container {
     width: 100%;
-    margin: 0 auto;
+    margin: auto !important;
+    background-color: #ffffff;
 }
 
 .container-login {
@@ -11,12 +12,12 @@
     align-items: center;
     justify-content: center;
     padding: 15px;
-    background-color: #111;
+    background-color: #ffffff;
 }
 
 .wrap-login {
     width: 390px;
-    background-color: #333;
+    background-color: #383737;
     border-radius: 10px;
     overflow: hidden;
     padding: 77px 55px 33px 55px;
